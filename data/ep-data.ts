@@ -8,7 +8,7 @@ export interface Song {
 }
 
 export const EP_DATA = {
-    mainCover: "/images/EP-Template.png",
+    mainCover: "/images/EP-Temporal.png",
     songs: [
         {
             id: "song-1",
