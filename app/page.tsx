@@ -1,19 +1,25 @@
 import EPCoverExplorer from "@/components/EPCoverExplorer";
-import EPCoverTemporal from "@/components/EPCoverTemporal"
+import EPCoverTemporal from "@/components/EPCoverTemporal";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4">
-        <h1 className="text-2x1 font-bold mb-8 uppercase tracking-widest">
-          .
-        </h1>
+    <main
+      className="min-h-screen text-white flex flex-col items-center justify-center p-4"
+      style={{
+        backgroundColor: '#C2B280',
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E")`
+      }}
+    >
+      <h1 className="text-2xl font-bold mb-8 uppercase tracking-widest text-[#2c271d] drop-shadow-sm">
 
-        <EPCoverTemporal /> 
-        {/*<EPCoverExplorer /> */}
+      </h1>
 
-        <footer className="mt-12 opacity-50 text-sm">
-          © 2026 Crepsac
-        </footer>
+      {/*<EPCoverTemporal />*/}
+      <EPCoverExplorer />
+
+      <footer className="mt-12 text-[#2c271d]/70 text-sm font-medium">
+        © 2026 Crepsac
+      </footer>
     </main>
   );
 }

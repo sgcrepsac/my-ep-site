@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {EP_DATA, Song} from '../data/ep-data';
+import { EP_DATA, Song } from '../data/ep-data';
 
 export default function EPCoverTemporal() {
   const [selectedSong, setSelectedSong] = useState<Song | null>(null);
@@ -9,7 +9,7 @@ export default function EPCoverTemporal() {
   return (
     <div className="relative w-full max-w-2xl mx-auto aspect-square overflow-hidden rounded-lg shadow-2xl">
       {/* 1. The Main Image */}
-      <img src={EP_DATA.mainCover} alt="EP Cover" className="w-full h-full object-cover" />
+      <img src={EP_DATA.tempCover} alt="EP Cover" className="w-full h-full object-cover" />
 
 
 
@@ -23,8 +23,8 @@ export default function EPCoverTemporal() {
             className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center p-6 text-center"
           >
             <h2 className="text-3xl font-bold mb-2">{selectedSong.title}</h2>
-            <p className="text-gray-300 mb-6">{selectedSong.description}</p>
-           
+            <p className="text-gray-300 mb-6">{selectedSong.title}</p>
+
             <div className="flex gap-4">
               <a href={selectedSong.spotify} className="bg-green-500 px-4 py-2 rounded-full font-bold">Spotify</a>
               <a href={selectedSong.youtube} className="bg-red-600 px-4 py-2 rounded-full font-bold">YouTube</a>
