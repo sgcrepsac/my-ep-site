@@ -1,26 +1,13 @@
-import EPCoverExplorer from "@/components/EPCoverExplorer";
-import EPCoverTemporal from "@/components/EPCoverTemporal";
-
 export default function Home() {
   return (
-    <main
-      className="min-h-screen text-white flex flex-col items-center justify-center p-4"
-      style={{
-        backgroundColor: '#C2B280',
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E")`
-      }}
-    >
-      <h1 className="text-2xl font-bold mb-8 uppercase tracking-widest text-[#2c271d] drop-shadow-sm">
-
+    <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center pt-16">
+      <h1 className="font-playfair text-5xl md:text-6xl font-bold mb-6 text-[#2c271d] drop-shadow-md tracking-wider text-center uppercase">
+        Bienvenidos a CREPSAC
       </h1>
-
-      {/*<EPCoverTemporal />*/}
-      <EPCoverExplorer />
-
-      <footer className="mt-12 text-[#2c271d]/70 text-sm font-medium">
-        © 2026 Crepsac
-      </footer>
-    </main>
+      <p className="text-[#2c271d]/80 text-lg md:text-xl font-medium tracking-wide text-center max-w-2xl mb-12">
+        Explora la música, conoce la historia y sumérgete en el universo sonoro.
+      </p>
+    </div>
   );
 }
 

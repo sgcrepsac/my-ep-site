@@ -249,7 +249,7 @@ export default function EPCoverExplorer() {
                       onClick={() => setShowLyrics(!showLyrics)}
                       className="text-white hover:text-[#C2B280] text-sm uppercase tracking-widest mb-6 px-6 py-2 border border-white/20 hover:border-[#C2B280] rounded-full transition-all duration-300 drop-shadow-md bg-white/5 backdrop-blur-sm"
                     >
-                      {showLyrics ? "Hide Lyrics" : "View Lyrics"}
+                      {showLyrics ? "Ocultar Letra" : "Ver Letra"}
                     </button>
                   )}
 
