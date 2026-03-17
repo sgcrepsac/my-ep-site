@@ -19,8 +19,8 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Crepsac",
-  description: "Official website for Crepsac",
+  title: "Santiago Crepsac",
+  description: "Official website for Santiago Crepsac",
 };
 
 export default function RootLayout({
@@ -42,7 +42,7 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="py-6 text-center text-[#2c271d]/70 text-sm font-medium">
-          © 2026 Crepsac
+          © 2026 Santiago Crepsac
         </footer>
       </body>
     </html>
