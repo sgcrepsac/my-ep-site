@@ -43,7 +43,7 @@ export default function Home() {
           <motion.span
             variants={child}
             key={index}
-            className="font-playfair text-[5rem] sm:text-8xl md:text-9xl font-bold text-[#1a1a1a] drop-shadow-2xl tracking-widest uppercase inline-block mx-px selection:bg-[#C2B280] selection:text-white"
+            className="font-playfair text-5xl sm:text-7xl md:text-9xl font-bold text-[#1a1a1a] drop-shadow-2xl tracking-widest uppercase inline-block mx-px selection:bg-[#C2B280] selection:text-white"
           >
             {letter}
           </motion.span>

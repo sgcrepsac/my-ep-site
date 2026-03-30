@@ -10,23 +10,7 @@ import { useEffect } from 'react';
 export default function EPCoverExplorer() {
   const [selectedSong, setSelectedSong] = useState<Song | null>(null);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [showLyrics, setShowLyrics] = useState(false);
-  const [lyricsContent, setLyricsContent] = useState<string>("");
   const [creditsContent, setCreditsContent] = useState<string>("");
-
-  // Fetch the markdown lyrics file when the user toggles showLyrics
-  useEffect(() => {
-    if (showLyrics && selectedSong?.lyricsFile) {
-      setLyricsContent("Loading lyrics...");
-      fetch(selectedSong.lyricsFile)
-        .then((res) => {
-          if (!res.ok) throw new Error("Lyrics not found");
-          return res.text();
-        })
-        .then((text) => setLyricsContent(text))
-        .catch(() => setLyricsContent("Could not load lyrics for this song."));
-    }
-  }, [showLyrics, selectedSong]);
 
   // Fetch the markdown credits file when a song becomes selected
   useEffect(() => {
@@ -179,28 +163,7 @@ export default function EPCoverExplorer() {
                       transition={{ type: "spring", stiffness: 200, damping: 20 }}
                     />
 
-                    {/* Lyrics Overlay on Front face */}
-                    <AnimatePresence>
-                      {showLyrics && selectedSong.lyricsFile && (
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          className="absolute inset-0 bg-black/80 backdrop-blur-sm p-6 md:p-10 overflow-y-auto flex flex-col items-center justify-start pointer-events-auto"
-                          onClick={(e) => {
-                            // prevent flip when scrolling/clicking inside lyrics
-                            e.stopPropagation();
-                          }}
-                        >
-                          <h3 className="text-white text-3xl font-bold mb-8 font-serif italic tracking-wider">Letra</h3>
-                          <div className="prose prose-invert prose-p:text-gray-200 prose-p:leading-loose text-center font-light w-full max-w-sm mx-auto prose-strong:font-bold prose-strong:text-white prose-em:italic">
-                            <ReactMarkdown remarkPlugins={[remarkBreaks]}>
-                              {lyricsContent}
-                            </ReactMarkdown>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+
                   </motion.div>
 
                   {/* Back of Card: The Credits */}
@@ -243,22 +206,11 @@ export default function EPCoverExplorer() {
 
                 {/* Text-based Utilities */}
                 <div className="flex flex-col items-center mt-4">
-                  {/* Lyrics Toggle Button */}
-                  {selectedSong.lyricsFile && (
-                    <button
-                      onClick={() => setShowLyrics(!showLyrics)}
-                      className="text-white hover:text-[#C2B280] text-sm uppercase tracking-widest mb-6 px-6 py-2 border border-white/20 hover:border-[#C2B280] rounded-full transition-all duration-300 drop-shadow-md bg-white/5 backdrop-blur-sm"
-                    >
-                      {showLyrics ? "Ocultar Letra" : "Ver Letra"}
-                    </button>
-                  )}
-
                   {/* Return to Cover Button */}
                   <button
                     onClick={() => {
                       setSelectedSong(null);
                       setIsFlipped(false); // Reset flip state for next open
-                      setShowLyrics(false); // Reset lyrics
                     }}
                     className="text-white hover:text-white/80 text-xs uppercase tracking-[0.2em] pb-1 border-b border-white/30 hover:border-white transition-all duration-300 drop-shadow-md"
                   >
