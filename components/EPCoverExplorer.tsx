@@ -125,7 +125,7 @@ export default function EPCoverExplorer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 sm:p-8 pointer-events-auto bg-transparent overflow-y-auto w-full h-full"
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 sm:p-8 pointer-events-auto bg-black/70 backdrop-blur-md overflow-y-auto w-full h-full"
           >
             {/* Inner wrapper to handle centering and vertical sizing gracefully */}
             <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center my-auto min-h-min py-12">
@@ -168,13 +168,13 @@ export default function EPCoverExplorer() {
 
                   {/* Back of Card: The Credits */}
                   <motion.div
-                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl shadow-2xl bg-black border border-white/20 flex flex-col items-center justify-center p-8 overflow-y-auto"
+                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl shadow-2xl bg-[#1a1a1a] border border-white/20 flex flex-col items-center justify-center p-8 overflow-y-auto"
                     style={{
                       backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)'
                     }}
                   >
-                    <div className="prose prose-invert prose-p:text-gray-200 prose-p:leading-relaxed text-center font-light w-full max-w-sm mx-auto prose-strong:font-bold prose-strong:text-white prose-em:italic prose-a:text-[#C2B280] hover:prose-a:text-white transition-colors">
+                    <div className="prose prose-invert prose-p:text-white/80 prose-p:leading-relaxed text-center font-playfair text-lg w-full max-w-sm mx-auto prose-strong:font-bold prose-strong:text-white prose-em:italic prose-a:text-[#C2B280] hover:prose-a:text-white transition-colors tracking-wide">
                       <ReactMarkdown remarkPlugins={[remarkBreaks]}>
                         {creditsContent}
                       </ReactMarkdown>
