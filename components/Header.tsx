@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaYoutube, FaSpotify, FaInstagram, FaBars, FaTimes } from "react-icons/fa";
+import { FaYoutube, FaSpotify, FaInstagram, FaBars, FaTimes, FaApple, FaDeezer } from "react-icons/fa";
 
 export default function Header() {
   const pathname = usePathname();
@@ -44,13 +44,19 @@ export default function Header() {
           
           {/* Desktop Social Icons */}
           <div className="hidden md:flex items-center gap-4 border-l border-white/20 pl-6">
-            <a href="https://youtube.com/@SantiagoGCrepsac" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#ff0000] transition-colors" aria-label="YouTube">
-              <FaYoutube className="w-5 h-5" />
-            </a>
-            <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#1db954] transition-colors" aria-label="Spotify">
+            <a href="https://open.spotify.com/artist/4vCt0v0K3dtK8L8VJ61vbm?si=Z93mb9wTQyOsNwwk-rvR7Q" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#1db954] transition-colors" aria-label="Spotify">
               <FaSpotify className="w-5 h-5" />
             </a>
-            <a href="https://instagram.com/santigcrepsac" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#e1306c] transition-colors" aria-label="Instagram">
+            <a href="http://www.youtube.com/@SantiagoCrepsac" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#ff0000] transition-colors" aria-label="YouTube">
+              <FaYoutube className="w-5 h-5" />
+            </a>
+            <a href="https://music.apple.com/ar/artist/santiago-crepsac/6797105457" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#ff4d61] transition-colors" aria-label="Apple Music">
+              <FaApple className="w-5 h-5 mb-0.5" />
+            </a>
+            <a href="https://link.deezer.com/s/347MdjtFcAMwbrQg4PRJ7" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#ffffff] transition-colors" aria-label="Deezer">
+              <FaDeezer className="w-5 h-5" />
+            </a>
+            <a href="https://www.instagram.com/santigcrepsac" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#e1306c] transition-colors" aria-label="Instagram">
               <FaInstagram className="w-5 h-5" />
             </a>
           </div>
@@ -87,14 +93,20 @@ export default function Header() {
               );
             })}
             
-            <div className="flex items-center gap-6 mt-4 pt-6 border-t border-white/10 w-1/2 justify-center">
-              <a href="https://youtube.com/@SantiagoGCrepsac" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#ff0000] transition-colors" aria-label="YouTube">
-                <FaYoutube className="w-6 h-6" />
-              </a>
-              <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#1db954] transition-colors" aria-label="Spotify">
+            <div className="flex items-center gap-6 mt-4 pt-6 border-t border-white/10 w-full justify-center flex-wrap">
+              <a href="https://open.spotify.com/artist/4vCt0v0K3dtK8L8VJ61vbm?si=Z93mb9wTQyOsNwwk-rvR7Q" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#1db954] transition-colors" aria-label="Spotify">
                 <FaSpotify className="w-6 h-6" />
               </a>
-              <a href="https://instagram.com/santigcrepsac" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#e1306c] transition-colors" aria-label="Instagram">
+              <a href="http://www.youtube.com/@SantiagoCrepsac" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#ff0000] transition-colors" aria-label="YouTube">
+                <FaYoutube className="w-6 h-6" />
+              </a>
+              <a href="https://music.apple.com/ar/artist/santiago-crepsac/6797105457" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#ff4d61] transition-colors" aria-label="Apple Music">
+                <FaApple className="w-6 h-6 mb-0.5" />
+              </a>
+              <a href="https://link.deezer.com/s/347MdjtFcAMwbrQg4PRJ7" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#ffffff] transition-colors" aria-label="Deezer">
+                <FaDeezer className="w-6 h-6" />
+              </a>
+              <a href="https://www.instagram.com/santigcrepsac" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-[#e1306c] transition-colors" aria-label="Instagram">
                 <FaInstagram className="w-6 h-6" />
               </a>
             </div>

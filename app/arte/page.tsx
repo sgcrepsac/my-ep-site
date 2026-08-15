@@ -6,7 +6,7 @@ export default function ArtePage() {
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col items-center pt-8 px-4">
       <h1 
-        className="font-playfair text-5xl md:text-6xl font-bold mb-8 text-[#2c271d] drop-shadow-sm tracking-widest uppercase"
+        className="font-playfair text-5xl md:text-6xl font-bold mb-8 text-[#2c271d] drop-shadow-sm tracking-widest uppercase blur-md select-none opacity-80"
         style={{ fontStyle: "italic", fontWeight: 600 }}
       >
         Reflexiones I

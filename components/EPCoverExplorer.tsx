@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EP_DATA, Song } from '../data/ep-data';
-import { FaSpotify, FaYoutube } from 'react-icons/fa';
+import { FaSpotify, FaYoutube, FaApple, FaDeezer } from 'react-icons/fa';
 import ReactMarkdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 import { useEffect } from 'react';
@@ -60,40 +60,47 @@ export default function EPCoverExplorer() {
             transformOrigin: '50% 50%',
           }}
         >
-          {/* Main Cover Image (dimmed when something is selected) */}
+          {/* Main Cover Blurred Base */}
           <motion.img
             src={EP_DATA.mainCover}
-            alt="EP Cover Background"
-            className="w-full h-auto block z-0 pointer-events-none"
-            animate={{ filter: selectedSong ? 'brightness(0.2) saturate(0.5)' : 'brightness(1) saturate(1)' }}
+            alt="EP Cover Background Blurred"
+            className="w-full h-auto block z-0 pointer-events-none opacity-80"
+            animate={{ filter: selectedSong ? 'brightness(0.2) saturate(0.5) blur(10px)' : 'brightness(1) saturate(1) blur(10px)' }}
             transition={{ duration: 1.0 }}
           />
 
-          {/* The Embedded Song Images (permanently part of the cover) */}
-          {EP_DATA.songs.map((song) => {
-            if (selectedSong?.id === song.id) return null; // hide the original when selected to allow layout morph
-            return (
-              <motion.img
-                key={`img-hotspot-${song.id}`}
-                layoutId={`song-img-morph-${song.id}`}
-                src={song.image}
-                alt={song.title}
-                className="absolute object-cover object-center pointer-events-none"
-                style={{
-                  top: `${song.hotspot.top}%`,
-                  left: `${song.hotspot.left}%`,
-                  width: `${song.hotspot.width}%`,
-                  height: `${song.hotspot.height}%`,
-                }}
-                initial={false}
-                animate={{
-                  filter: selectedSong ? 'brightness(0.1)' : 'brightness(1)',
-                  zIndex: 10,
-                }}
-                transition={{ duration: 0.8 }}
-              />
-            );
-          })}
+          {/* Main Cover Clear Overlay (Masked to show only released songs) */}
+          <motion.img
+            src={EP_DATA.mainCover}
+            alt="EP Cover Background Clear"
+            className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
+            animate={{ filter: selectedSong ? 'brightness(0.2) saturate(0.5)' : 'brightness(1) saturate(1)' }}
+            transition={{ duration: 1.0 }}
+            style={{
+              WebkitMaskImage: EP_DATA.songs.some(s => s.released)
+                ? EP_DATA.songs
+                  .filter((s) => s.released)
+                  .map((s) => {
+                    const cx = s.hotspot.left + s.hotspot.width / 2;
+                    const cy = s.hotspot.top + s.hotspot.height / 2;
+                    return `radial-gradient(circle at ${cx}% ${cy}%, black 3.5%, transparent 5%)`;
+                  })
+                  .join(', ')
+                : 'linear-gradient(transparent, transparent)',
+              maskImage: EP_DATA.songs.some(s => s.released)
+                ? EP_DATA.songs
+                  .filter((s) => s.released)
+                  .map((s) => {
+                    const cx = s.hotspot.left + s.hotspot.width / 2;
+                    const cy = s.hotspot.top + s.hotspot.height / 2;
+                    return `radial-gradient(circle at ${cx}% ${cy}%, black 3.5%, transparent 5%)`;
+                  })
+                  .join(', ')
+                : 'linear-gradient(transparent, transparent)',
+            }}
+          />
+
+          {/* The Embedded Song Images (permanently part of the cover) removed as per user request */}
 
           {/* The Clickable Hotspots */}
           <AnimatePresence>
@@ -108,6 +115,8 @@ export default function EPCoverExplorer() {
                   left: `${song.hotspot.left}%`,
                   width: `${song.hotspot.width}%`,
                   height: `${song.hotspot.height}%`,
+                  transform: song.hotspot.rotate ? `rotate(${song.hotspot.rotate}deg)` : undefined,
+                  borderRadius: song.hotspot.borderRadius || '0px',
                 }}
                 onClick={() => setSelectedSong(song)}
                 aria-label={`View ${song.title}`}
@@ -140,11 +149,11 @@ export default function EPCoverExplorer() {
 
               {/* Middle Layout: Interactive 3D Flip Card */}
               <div
-                className="relative w-72 md:w-[28rem] aspect-[4/3] cursor-pointer group perspective-1000 mb-12"
+                className="relative cursor-pointer group perspective-1000 mb-12 flex justify-center"
                 onClick={() => setIsFlipped(!isFlipped)}
               >
                 <motion.div
-                  className="w-full h-full relative"
+                  className="relative flex justify-center items-center"
                   initial={false}
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
                   transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
@@ -152,18 +161,22 @@ export default function EPCoverExplorer() {
                 >
                   {/* Front of Card: The Morphing Image */}
                   <motion.div
-                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden border border-white/10 group-hover:ring-4 group-hover:ring-white/20 transition-all duration-300"
+                    className="relative w-auto h-auto backface-hidden rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden border border-white/10 group-hover:ring-4 group-hover:ring-white/20 transition-all duration-300"
                     style={{ backfaceVisibility: 'hidden' }}
                   >
                     <motion.img
                       layoutId={`song-img-morph-${selectedSong.id}`}
                       src={selectedSong.image}
                       alt={selectedSong.title}
-                      className="w-full h-full object-cover"
+                      className={`w-auto h-auto max-h-[60vh] max-w-[90vw] object-contain ${!selectedSong.released ? 'blur-md opacity-80' : ''}`}
                       transition={{ type: "spring", stiffness: 200, damping: 20 }}
                     />
-
-
+                    {!selectedSong.released && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 z-10">
+                        <span className="text-2xl font-bold text-white tracking-widest uppercase mb-2 drop-shadow-lg">Unreleased</span>
+                        <span className="text-lg text-white/90 drop-shadow-md">{selectedSong.releaseDate}</span>
+                      </div>
+                    )}
                   </motion.div>
 
                   {/* Back of Card: The Credits */}
@@ -175,9 +188,13 @@ export default function EPCoverExplorer() {
                     }}
                   >
                     <div className="prose prose-invert prose-p:text-white/80 prose-p:leading-relaxed text-center font-playfair text-lg w-full max-w-sm mx-auto prose-strong:font-bold prose-strong:text-white prose-em:italic prose-a:text-[#C2B280] hover:prose-a:text-white transition-colors tracking-wide">
-                      <ReactMarkdown remarkPlugins={[remarkBreaks]}>
-                        {creditsContent}
-                      </ReactMarkdown>
+                      {selectedSong.released ? (
+                        <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+                          {creditsContent}
+                        </ReactMarkdown>
+                      ) : (
+                        <p className="text-white/50 italic text-xl">Credits will be revealed on release day.</p>
+                      )}
                     </div>
                   </motion.div>
                 </motion.div>
@@ -185,24 +202,46 @@ export default function EPCoverExplorer() {
 
               {/* Bottom: Buttons */}
               <div className="flex flex-col items-center gap-6 mt-4">
-                <div className="flex flex-wrap justify-center gap-6">
-                  <a
-                    href={selectedSong.spotify}
-                    target="_blank" rel="noopener noreferrer"
-                    className="bg-[#1DB954] hover:bg-[#1ed760] text-black w-12 h-12 rounded-full flex items-center justify-center transition-transform transform hover:scale-110 shadow-xl"
-                    aria-label="Listen on Spotify"
-                  >
-                    <FaSpotify className="w-6 h-6" />
-                  </a>
-                  <a
-                    href={selectedSong.youtube}
-                    target="_blank" rel="noopener noreferrer"
-                    className="bg-[#FF0000] hover:bg-[#ff4d4d] text-white w-12 h-12 rounded-full flex items-center justify-center transition-transform transform hover:scale-110 shadow-xl"
-                    aria-label="Watch on YouTube"
-                  >
-                    <FaYoutube className="w-6 h-6" />
-                  </a>
-                </div>
+                {selectedSong.released && (
+                  <div className="flex flex-wrap justify-center gap-6">
+                    <a
+                      href={selectedSong.spotify}
+                      target="_blank" rel="noopener noreferrer"
+                      className="bg-[#1DB954] hover:bg-[#1ed760] text-black w-12 h-12 rounded-full flex items-center justify-center transition-transform transform hover:scale-110 shadow-xl"
+                      aria-label="Listen on Spotify"
+                    >
+                      <FaSpotify className="w-6 h-6" />
+                    </a>
+                    <a
+                      href={selectedSong.youtube}
+                      target="_blank" rel="noopener noreferrer"
+                      className="bg-[#FF0000] hover:bg-[#ff4d4d] text-white w-12 h-12 rounded-full flex items-center justify-center transition-transform transform hover:scale-110 shadow-xl"
+                      aria-label="Watch on YouTube"
+                    >
+                      <FaYoutube className="w-6 h-6" />
+                    </a>
+                    {selectedSong.appleMusic && (
+                      <a
+                        href={selectedSong.appleMusic}
+                        target="_blank" rel="noopener noreferrer"
+                        className="bg-[#FA243C] hover:bg-[#ff4d61] text-white w-12 h-12 rounded-full flex items-center justify-center transition-transform transform hover:scale-110 shadow-xl"
+                        aria-label="Listen on Apple Music"
+                      >
+                        <FaApple className="w-6 h-6 mb-0.5" />
+                      </a>
+                    )}
+                    {selectedSong.deezer && (
+                      <a
+                        href={selectedSong.deezer}
+                        target="_blank" rel="noopener noreferrer"
+                        className="bg-[#000000] hover:bg-[#222222] text-white w-12 h-12 rounded-full flex items-center justify-center transition-transform transform hover:scale-110 shadow-xl"
+                        aria-label="Listen on Deezer"
+                      >
+                        <FaDeezer className="w-6 h-6" />
+                      </a>
+                    )}
+                  </div>
+                )}
 
                 {/* Text-based Utilities */}
                 <div className="flex flex-col items-center mt-4">
