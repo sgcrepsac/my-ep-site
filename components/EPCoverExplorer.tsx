@@ -122,7 +122,7 @@ export default function EPCoverExplorer() {
                 onClick={() => setIsFlipped(!isFlipped)}
               >
                 <motion.div
-                  className="relative flex justify-center items-center w-[30%] mx-auto"
+                  className="relative flex justify-center items-center w-[70%] sm:w-[50%] md:w-[30%] mx-auto"
                   initial={false}
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
                   transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
