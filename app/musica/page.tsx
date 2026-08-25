@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { EP_DATA } from "@/data/ep-data";
 import { FaSpotify, FaYoutube, FaApple, FaDeezer } from "react-icons/fa";
+import { Amatic_SC } from "next/font/google";
+
+const amaticSC = Amatic_SC({ weight: "700", subsets: ["latin"] });
 
 export default function MusicaPage() {
   const [activeEP, setActiveEP] = useState<string | null>(null);
@@ -24,10 +27,10 @@ export default function MusicaPage() {
             <img 
               src={EP_DATA.mainCover} 
               alt="Reflexiones I Cover" 
-              className="w-48 h-48 object-cover rounded-md shadow-lg border border-[#2c271d]/10 blur-md opacity-90"
+              className="w-48 h-48 object-cover rounded-md shadow-lg border border-[#2c271d]/10"
             />
             <div className="flex flex-col items-center md:items-start text-center md:text-left pt-4">
-              <h1 className="font-playfair text-4xl font-bold text-[#2c271d] mb-2 tracking-wide blur-md select-none opacity-80">
+              <h1 className={`text-5xl font-bold text-[#2c271d] mb-2 tracking-wide ${amaticSC.className}`}>
                 Reflexiones I
               </h1>
               <p className="text-[#2c271d]/60 font-medium text-sm uppercase tracking-widest mb-6">
@@ -101,7 +104,7 @@ export default function MusicaPage() {
 
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col items-center pt-16 px-4">
-      <h1 className="font-playfair text-4xl font-bold mb-16 text-[#2c271d] drop-shadow-sm tracking-wide">
+      <h1 className={`text-5xl font-bold mb-16 text-[#2c271d] drop-shadow-sm tracking-wide ${amaticSC.className}`}>
         Discografía
       </h1>
       
@@ -115,12 +118,12 @@ export default function MusicaPage() {
             <img 
               src={EP_DATA.mainCover} 
               alt="Reflexiones I Cover" 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 blur-md opacity-90"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             {/* Soft overlay on hover */}
             <div className="absolute inset-0 bg-[#2c271d]/0 group-hover:bg-[#2c271d]/5 transition-colors duration-300" />
           </div>
-          <h3 className="font-playfair text-xl font-bold text-[#2c271d] group-hover:text-[#8a7342] transition-colors blur-md select-none opacity-80">
+          <h3 className={`text-3xl font-bold text-[#2c271d] group-hover:text-[#8a7342] transition-colors ${amaticSC.className}`}>
             Reflexiones I
           </h3>
           <p className="text-[#2c271d]/60 font-medium text-sm mt-1 uppercase tracking-widest">

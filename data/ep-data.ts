@@ -21,7 +21,7 @@ export interface Song {
 }
 
 export const EP_DATA = {
-    mainCover: "/images/SantiagoCrepsac_Reflexiones1.jpg",
+    mainCover: "/images/SantiagoCrepsac_Reflexiones1_OneReleases.jpg",
     tempCover: "/images/EP-Temporal.png",
     songs: [
         {
@@ -47,7 +47,7 @@ export const EP_DATA = {
             image: "/images/SantiagoCrepsac_ADondeVan.jpg",
             lyricsFile: "/lyrics/A dónde van.md",
             released: false,
-            releaseDate: "Coming Soon"
+            releaseDate: "02/09/2026"
         },
         {
             id: "song-3",
@@ -59,7 +59,7 @@ export const EP_DATA = {
             image: "/images/SantiagoCrepsac_Soledad.jpg",
             lyricsFile: "/lyrics/Soledad.md",
             released: false,
-            releaseDate: "Coming Soon"
+            releaseDate: "09/09/2026"
         },
         {
             id: "song-1",
@@ -71,7 +71,7 @@ export const EP_DATA = {
             image: "/images/SantiagoCrepsac_Desesperacion.jpg",
             lyricsFile: "/lyrics/Desesperación.md",
             released: false,
-            releaseDate: "Coming Soon"
+            releaseDate: "16/09/2026"
         }
     ] as Song[]
 };

@@ -48,7 +48,7 @@ export default function EPCoverExplorer() {
 
   return (
     <>
-      <div className="relative w-full max-w-[min(100vw-2rem,65vh)] mx-auto overflow-hidden">
+      <div className="relative w-full max-w-[min(100vw-2rem,85vh)] mx-auto overflow-hidden">
 
         {/* 1. The Main Wrap for Mathematical Zooming */}
         <motion.div
@@ -60,51 +60,18 @@ export default function EPCoverExplorer() {
             transformOrigin: '50% 50%',
           }}
         >
-          {/* Main Cover Blurred Base */}
+          {/* Main Cover */}
           <motion.img
             src={EP_DATA.mainCover}
-            alt="EP Cover Background Blurred"
-            className="w-full h-auto block z-0 pointer-events-none opacity-80"
-            animate={{ filter: selectedSong ? 'brightness(0.2) saturate(0.5) blur(10px)' : 'brightness(1) saturate(1) blur(10px)' }}
-            transition={{ duration: 1.0 }}
-          />
-
-          {/* Main Cover Clear Overlay (Masked to show only released songs) */}
-          <motion.img
-            src={EP_DATA.mainCover}
-            alt="EP Cover Background Clear"
-            className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"
+            alt="EP Cover Background"
+            className="w-full h-auto block z-0 pointer-events-none"
             animate={{ filter: selectedSong ? 'brightness(0.2) saturate(0.5)' : 'brightness(1) saturate(1)' }}
             transition={{ duration: 1.0 }}
-            style={{
-              WebkitMaskImage: EP_DATA.songs.some(s => s.released)
-                ? EP_DATA.songs
-                  .filter((s) => s.released)
-                  .map((s) => {
-                    const cx = s.hotspot.left + s.hotspot.width / 2;
-                    const cy = s.hotspot.top + s.hotspot.height / 2;
-                    return `radial-gradient(circle at ${cx}% ${cy}%, black 3.5%, transparent 5%)`;
-                  })
-                  .join(', ')
-                : 'linear-gradient(transparent, transparent)',
-              maskImage: EP_DATA.songs.some(s => s.released)
-                ? EP_DATA.songs
-                  .filter((s) => s.released)
-                  .map((s) => {
-                    const cx = s.hotspot.left + s.hotspot.width / 2;
-                    const cy = s.hotspot.top + s.hotspot.height / 2;
-                    return `radial-gradient(circle at ${cx}% ${cy}%, black 3.5%, transparent 5%)`;
-                  })
-                  .join(', ')
-                : 'linear-gradient(transparent, transparent)',
-            }}
           />
-
-          {/* The Embedded Song Images (permanently part of the cover) removed as per user request */}
 
           {/* The Clickable Hotspots */}
           <AnimatePresence>
-            {!selectedSong && EP_DATA.songs.map((song) => (
+            {!selectedSong && EP_DATA.songs.filter(song => song.released).map((song) => (
               <motion.button
                 key={`btn-${song.id}`}
                 initial={{ opacity: 1 }}
@@ -153,7 +120,7 @@ export default function EPCoverExplorer() {
                 onClick={() => setIsFlipped(!isFlipped)}
               >
                 <motion.div
-                  className="relative flex justify-center items-center"
+                  className="relative flex justify-center items-center w-[50%] mx-auto"
                   initial={false}
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
                   transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
@@ -168,7 +135,7 @@ export default function EPCoverExplorer() {
                       layoutId={`song-img-morph-${selectedSong.id}`}
                       src={selectedSong.image}
                       alt={selectedSong.title}
-                      className={`w-auto h-auto max-h-[60vh] max-w-[90vw] object-contain ${!selectedSong.released ? 'blur-md opacity-80' : ''}`}
+                      className={`w-full h-auto block rounded-xl ${!selectedSong.released ? 'blur-md opacity-80' : ''}`}
                       transition={{ type: "spring", stiffness: 200, damping: 20 }}
                     />
                     {!selectedSong.released && (
@@ -179,21 +146,24 @@ export default function EPCoverExplorer() {
                     )}
                   </motion.div>
 
-                  {/* Back of Card: The Credits */}
                   <motion.div
-                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl shadow-2xl bg-[#1a1a1a] border border-white/20 flex flex-col items-center justify-center p-8 overflow-y-auto"
+                    className="absolute inset-0 w-full h-full backface-hidden rounded-xl shadow-2xl bg-[#1a1a1a] border border-white/20 flex flex-col items-center justify-center overflow-hidden"
                     style={{
                       backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)'
                     }}
                   >
-                    <div className="prose prose-invert prose-p:text-white/80 prose-p:leading-relaxed text-center font-playfair text-lg w-full max-w-sm mx-auto prose-strong:font-bold prose-strong:text-white prose-em:italic prose-a:text-[#C2B280] hover:prose-a:text-white transition-colors tracking-wide">
+                    <div className="w-full h-full">
                       {selectedSong.released ? (
-                        <ReactMarkdown remarkPlugins={[remarkBreaks]}>
-                          {creditsContent}
-                        </ReactMarkdown>
+                        <img 
+                          src="/credits/Creditos_Catarata-02.jpg" 
+                          alt={`Credits for ${selectedSong.title}`} 
+                          className="w-full h-full object-cover block rounded-xl"
+                        />
                       ) : (
-                        <p className="text-white/50 italic text-xl">Credits will be revealed on release day.</p>
+                        <div className="w-full h-full flex items-center justify-center p-4">
+                          <p className="text-white/50 italic text-xl text-center">Credits will be revealed on release day.</p>
+                        </div>
                       )}
                     </div>
                   </motion.div>
