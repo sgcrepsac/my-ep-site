@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-[#f9f6f0]/80 border-b border-[#2c271d]/10 shadow-sm">
       <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className={`font-bold text-2xl text-[#C2B280] tracking-wider uppercase ${amaticSC.className}`}>
+        <Link href="/" className={`font-bold text-3xl text-[#2c271d] tracking-wider uppercase ${amaticSC.className}`}>
           Santiago Crepsac
         </Link>
         <div className="flex items-center gap-8">
@@ -44,7 +44,7 @@ export default function Header() {
               );
             })}
           </nav>
-          
+
           {/* Desktop Social Icons */}
           <div className="hidden md:flex items-center gap-4 border-l border-[#2c271d]/20 pl-6">
             <a href="https://open.spotify.com/artist/4vCt0v0K3dtK8L8VJ61vbm?si=Z93mb9wTQyOsNwwk-rvR7Q" target="_blank" rel="noopener noreferrer" className="text-[#2c271d]/70 hover:text-[#1db954] transition-colors" aria-label="Spotify">
@@ -65,7 +65,7 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden text-[#2c271d]/80 hover:text-[#2c271d] p-2 transition-colors focus:outline-none"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
@@ -95,7 +95,7 @@ export default function Header() {
                 </Link>
               );
             })}
-            
+
             <div className="flex items-center gap-6 mt-4 pt-6 border-t border-[#2c271d]/10 w-full justify-center flex-wrap">
               <a href="https://open.spotify.com/artist/4vCt0v0K3dtK8L8VJ61vbm?si=Z93mb9wTQyOsNwwk-rvR7Q" target="_blank" rel="noopener noreferrer" className="text-[#2c271d]/70 hover:text-[#1db954] transition-colors" aria-label="Spotify">
                 <FaSpotify className="w-6 h-6" />

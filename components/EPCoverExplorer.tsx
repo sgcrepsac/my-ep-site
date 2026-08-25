@@ -6,6 +6,9 @@ import { FaSpotify, FaYoutube, FaApple, FaDeezer } from 'react-icons/fa';
 import ReactMarkdown from 'react-markdown';
 import remarkBreaks from 'remark-breaks';
 import { useEffect } from 'react';
+import { Amatic_SC } from 'next/font/google';
+
+const amaticSC = Amatic_SC({ weight: "700", subsets: ["latin"] });
 
 export default function EPCoverExplorer() {
   const [selectedSong, setSelectedSong] = useState<Song | null>(null);
@@ -101,15 +104,14 @@ export default function EPCoverExplorer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center p-6 sm:p-8 pointer-events-auto bg-black/70 backdrop-blur-md overflow-y-auto w-full h-full"
+            className="fixed inset-0 z-[100] flex flex-col items-center p-4 sm:p-8 pointer-events-auto bg-black/70 backdrop-blur-md overflow-y-auto w-full h-full"
           >
             {/* Inner wrapper to handle centering and vertical sizing gracefully */}
-            <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center my-auto min-h-min py-12">
+            <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center min-h-full py-8">
 
               {/* Title Centered on Top */}
               <h2
-                className="text-5xl sm:text-7xl mb-12 tracking-wider text-white drop-shadow-2xl text-center"
-                style={{ fontFamily: "var(--font-playfair), serif", fontStyle: "italic", fontWeight: 600 }}
+                className={`text-6xl sm:text-7xl md:text-8xl mb-8 tracking-wider text-white drop-shadow-2xl text-center ${amaticSC.className}`}
               >
                 {selectedSong.title}
               </h2>
@@ -120,7 +122,7 @@ export default function EPCoverExplorer() {
                 onClick={() => setIsFlipped(!isFlipped)}
               >
                 <motion.div
-                  className="relative flex justify-center items-center w-[50%] mx-auto"
+                  className="relative flex justify-center items-center w-[30%] mx-auto"
                   initial={false}
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
                   transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }}
@@ -155,9 +157,9 @@ export default function EPCoverExplorer() {
                   >
                     <div className="w-full h-full">
                       {selectedSong.released ? (
-                        <img 
-                          src="/credits/Creditos_Catarata-02.jpg" 
-                          alt={`Credits for ${selectedSong.title}`} 
+                        <img
+                          src="/credits/Creditos_Catarata-02.jpg"
+                          alt={`Credits for ${selectedSong.title}`}
                           className="w-full h-full object-cover block rounded-xl"
                         />
                       ) : (
