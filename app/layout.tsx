@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Playfair_Display, Amatic_SC } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import PromoPopup from "@/components/PromoPopup";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,6 +47,7 @@ export default function RootLayout({
           backgroundAttachment: 'fixed',
         }}
       >
+        <PromoPopup />
         <Header />
         <main className="flex-grow w-full flex flex-col p-4 text-[#2c271d]">
           {children}
