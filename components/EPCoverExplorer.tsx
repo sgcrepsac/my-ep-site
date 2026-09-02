@@ -158,7 +158,7 @@ export default function EPCoverExplorer() {
                     <div className="w-full h-full">
                       {selectedSong.released ? (
                         <img
-                          src="/credits/Creditos_Catarata-02.jpg"
+                          src={selectedSong.creditsImage || "/credits/Creditos_Catarata-02.jpg"}
                           alt={`Credits for ${selectedSong.title}`}
                           className="w-full h-full object-cover block rounded-xl"
                         />

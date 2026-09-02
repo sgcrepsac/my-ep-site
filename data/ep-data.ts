@@ -14,6 +14,7 @@ export interface Song {
     appleMusic?: string;
     deezer?: string;
     creditsFile: string;
+    creditsImage?: string;
     image: string;
     lyricsFile?: string;
     released: boolean;
@@ -21,7 +22,7 @@ export interface Song {
 }
 
 export const EP_DATA = {
-    mainCover: "/images/SantiagoCrepsac_Reflexiones1_OneReleases.jpg",
+    mainCover: "/images/SantiagoCrepsac_Reflexiones1_TwoReleases.jpg",
     tempCover: "/images/EP-Temporal.png",
     songs: [
         {
@@ -33,6 +34,7 @@ export const EP_DATA = {
             appleMusic: "https://music.apple.com/ar/album/catarata-single/6797176586",
             deezer: "https://link.deezer.com/s/347M5JobGpwXjGLPXVao3",
             creditsFile: "/credits/catarata-credits.md",
+            creditsImage: "/credits/Creditos_Catarata-02.jpg",
             image: "/images/SantiagoCrepsac_Cataratas.jpg",
             lyricsFile: "/lyrics/Catarata.md",
             released: true
@@ -41,13 +43,15 @@ export const EP_DATA = {
             id: "song-2",
             title: "¿A dónde van?",
             hotspot: { top: 1, left: 45, width: 9, height: 27, rotate: 49, borderRadius: "10px" },
-            spotify: "https://open.spotify.com/...",
-            youtube: "https://youtube.com/...",
+            spotify: "https://open.spotify.com/track/1jbSQq4uiXqA8M0J1WPhui?si=81962c8da90e46e6",
+            youtube: "https://youtu.be/Qnl90ntOlz4?si=4ZcXZy-Y6YGIkXhR",
+            appleMusic: "https://music.apple.com/ar/song/a-d%C3%B3nde-van/6801283659",
+            deezer: "https://link.deezer.com/s/34i4zoYJvro1d0Oy05rlw",
             creditsFile: "/credits/adondevan-credits.md",
+            creditsImage: "/credits/Creditos_notAvailable.jpg",
             image: "/images/SantiagoCrepsac_ADondeVan.jpg",
             lyricsFile: "/lyrics/A dónde van.md",
-            released: false,
-            releaseDate: "02/09/2026"
+            released: true
         },
         {
             id: "song-3",

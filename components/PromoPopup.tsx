@@ -87,10 +87,10 @@ export default function PromoPopup() {
           {/* Text Area */}
           <div className="p-6 text-center flex flex-col items-center">
             <h3 className={`text-4xl font-bold text-[#2c271d] mb-2 tracking-wider ${amaticSC.className}`}>
-              ¡Próximo Lanzamiento!
+              Escucha ¿A dónde van? ahora!
             </h3>
             <p className="text-[#2c271d]/70 text-sm font-medium mb-6">
-              Escucha un adelanto exclusivo de mi próximo sencillo. ¡No te lo pierdas!
+              Escucha un adelanto exclusivo de mi nuevo sencillo. ¡No te lo pierdas!
             </p>
             <button
               onClick={handleClose}
