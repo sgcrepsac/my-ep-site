@@ -69,7 +69,7 @@ export default function PromoPopup() {
           {/* Placeholder Image Area */}
           <div className="w-full aspect-square bg-[#e5e1d8] flex items-center justify-center relative group">
             {/* Replace the src with your actual image later */}
-            <img src="/images/SantiagoCrepsac_ADondeVan.jpg" alt="Promo" className="w-full h-full object-cover" />
+            <img src="/images/SantiagoCrepsac_Soledad.jpg" alt="Promo" className="w-full h-full object-cover" />
             {/* <span className="text-[#2c271d]/40 font-medium tracking-widest uppercase">
               Promo Image Placeholder
             </span> */}
@@ -87,7 +87,7 @@ export default function PromoPopup() {
           {/* Text Area */}
           <div className="p-6 text-center flex flex-col items-center">
             <h3 className={`text-4xl font-bold text-[#2c271d] mb-2 tracking-wider ${amaticSC.className}`}>
-              Escucha ¿A dónde van? ahora!
+              Escucha Soledad ahora!
             </h3>
             <p className="text-[#2c271d]/70 text-sm font-medium mb-6">
               Escucha un adelanto exclusivo de mi nuevo sencillo. ¡No te lo pierdas!
@@ -105,7 +105,7 @@ export default function PromoPopup() {
         {/* Replace the src with your actual audio file later */}
         <audio
           ref={audioRef}
-          src="/audios/PromoADondeVan.mp3"
+          src="/audios/PromoSoledad.mp3"
           preload="auto"
           loop
         />

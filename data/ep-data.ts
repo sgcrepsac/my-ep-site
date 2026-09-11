@@ -16,13 +16,15 @@ export interface Song {
     creditsFile: string;
     creditsImage?: string;
     image: string;
+    movingImage?: string;
     lyricsFile?: string;
+    lyricsPdf?: string;
     released: boolean;
     releaseDate?: string;
 }
 
 export const EP_DATA = {
-    mainCover: "/images/SantiagoCrepsac_Reflexiones1_TwoReleases.jpg",
+    mainCover: "/images/SantiagoCrepsac_Reflexiones1_ThreeReleases.jpg",
     tempCover: "/images/EP-Temporal.png",
     songs: [
         {
@@ -36,7 +38,9 @@ export const EP_DATA = {
             creditsFile: "/credits/catarata-credits.md",
             creditsImage: "/credits/Creditos_Catarata-02.jpg",
             image: "/images/SantiagoCrepsac_Cataratas.jpg",
+            movingImage: "/movingImages/Cataratas_GIF.mp4",
             lyricsFile: "/lyrics/Catarata.md",
+            lyricsPdf: "/lyrics/CatarataLetra.pdf",
             released: true
         },
         {
@@ -50,20 +54,26 @@ export const EP_DATA = {
             creditsFile: "/credits/adondevan-credits.md",
             creditsImage: "/credits/Creditos_notAvailable.jpg",
             image: "/images/SantiagoCrepsac_ADondeVan.jpg",
+            movingImage: "/movingImages/ADondeVan_GIF.mp4",
             lyricsFile: "/lyrics/A dónde van.md",
+            lyricsPdf: "/lyrics/ADondeVanLetra.pdf",
             released: true
         },
         {
             id: "song-3",
             title: "Soledad",
             hotspot: { top: 40, left: 55, width: 12.5, height: 6, borderRadius: "50%" },
-            spotify: "https://open.spotify.com/...",
-            youtube: "https://youtube.com/...",
+            spotify: "https://open.spotify.com/track/7BLqWPpIM1XyFaIiYgso7t?si=69efcb3dcd194021",
+            youtube: "https://youtu.be/kPK6y1prk-M?si=7YOaupbN78vT-4A0",
+            appleMusic: "https://music.apple.com/ar/song/soledad/6801318732",
+            deezer: "https://link.deezer.com/s/34mZ7LeUjk7u7Iq1HWDat",
             creditsFile: "/credits/soledad-credits.md",
+            creditsImage: "/credits/Creditos_notAvailable.jpg",
             image: "/images/SantiagoCrepsac_Soledad.jpg",
+            movingImage: "/movingImages/Soledad_GIF.mp4",
             lyricsFile: "/lyrics/Soledad.md",
-            released: false,
-            releaseDate: "09/09/2026"
+            lyricsPdf: "/lyrics/SoledadLetra.pdf",
+            released: true
         },
         {
             id: "song-1",
@@ -73,7 +83,9 @@ export const EP_DATA = {
             youtube: "https://youtube.com/...",
             creditsFile: "/credits/desesperacion-credits.md",
             image: "/images/SantiagoCrepsac_Desesperacion.jpg",
+            movingImage: "/movingImages/Desesperacion_GIF.mp4",
             lyricsFile: "/lyrics/Desesperación.md",
+            lyricsPdf: "/lyrics/DesesperacionLetra.pdf",
             released: false,
             releaseDate: "16/09/2026"
         }
